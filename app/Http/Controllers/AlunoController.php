@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aluno;
 use Illuminate\Http\Request;
+use App\Http\Requests\AlunoRequest;
 
 class AlunoController extends Controller
 {
@@ -24,7 +25,7 @@ class AlunoController extends Controller
         return view('alunos.create');
     }
 
-    public function store(Request $request)
+    public function store(AlunoRequest $request)
     {
         Aluno::create([
             'nome' => $request->nome,
