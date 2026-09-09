@@ -43,3 +43,7 @@ Route::get('/alunos/curso/{curso}', [AlunoController::class, 'porCurso']);
 Route::get('/alunos/busca/{nome}', [AlunoController::class, 'porNome']);
 Route::get('/alunos/recentes', [AlunoController::class, 'recentes']);
 Route::get('/alunos/total', [AlunoController::class, 'total']);
+
+use App\Http\Controllers\CursoController;
+
+Route::get('/cursos/{id}', [CursoController::class, 'show']);
