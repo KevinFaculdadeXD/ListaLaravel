@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
@@ -39,5 +40,29 @@ class AlunoController extends Controller
     public function destroy($id)
     {
         return "Aluno $id removido";
+    }
+
+    public function porCurso($curso)
+    {
+        $alunos = Aluno::where('curso', $curso)->get();
+        return $alunos;
+    }
+
+    public function porNome($nome)
+    {
+        $alunos = Aluno::where('nome', 'like', "%$nome%")->get();
+        return $alunos;
+    }
+
+    public function recentes()
+    {
+        $alunos = Aluno::orderBy('created_at', 'desc')->take(5)->get();
+        return $alunos;
+    }
+
+    public function total()
+    {
+        $total = Aluno::count();
+        return "Total de alunos: $total";
     }
 }

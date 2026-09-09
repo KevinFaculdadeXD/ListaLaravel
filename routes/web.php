@@ -38,3 +38,8 @@ Route::get('/alunos-crud/{id}/edit', [AlunoController::class, 'edit']);
 Route::post('/alunos-crud', [AlunoController::class, 'store']);
 Route::put('/alunos-crud/{id}', [AlunoController::class, 'update']);
 Route::delete('/alunos-crud/{id}', [AlunoController::class, 'destroy']);
+
+Route::get('/alunos/curso/{curso}', [AlunoController::class, 'porCurso']);
+Route::get('/alunos/busca/{nome}', [AlunoController::class, 'porNome']);
+Route::get('/alunos/recentes', [AlunoController::class, 'recentes']);
+Route::get('/alunos/total', [AlunoController::class, 'total']);
