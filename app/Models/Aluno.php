@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aluno extends Model
 {
-    //
+    protected $fillable = ['nome', 'curso', 'curso_id'];
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class);
+    }
 }
