@@ -22,11 +22,14 @@ class AlunoController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Aluno::class);
         return view('alunos.create');
     }
 
     public function store(AlunoRequest $request)
     {
+        $this->authorize('create', Aluno::class);
+
         Aluno::create([
             'nome' => $request->nome,
             'curso' => $request->curso,
@@ -38,12 +41,15 @@ class AlunoController extends Controller
     public function edit($id)
     {
         $aluno = Aluno::findOrFail($id);
+        $this->authorize('update', $aluno);
         return view('alunos.edit', compact('aluno'));
     }
 
     public function update(Request $request, $id)
     {
         $aluno = Aluno::findOrFail($id);
+        $this->authorize('update', $aluno);
+
         $aluno->update([
             'nome' => $request->nome,
             'curso' => $request->curso,
@@ -55,6 +61,8 @@ class AlunoController extends Controller
     public function destroy($id)
     {
         $aluno = Aluno::findOrFail($id);
+        $this->authorize('delete', $aluno);
+
         $aluno->delete();
 
         return redirect('/alunos-crud')->with('sucesso', 'Aluno removido com sucesso!');
